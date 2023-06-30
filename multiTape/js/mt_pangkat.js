@@ -16,6 +16,8 @@ var dispState = document.getElementById('show-state-now');
 var dispAnswer = document.getElementById('show-answer');
 var stepController = document.getElementById('controller_step');
 var initController = document.getElementById('init_step');
+var skipController = document.getElementById('controller_skip');
+var acceptingState = 22;
 
 function init(){
     trDelete();
@@ -59,6 +61,8 @@ function init(){
     k=2;
     l=1;
     state=0;
+
+    document.getElementById('controller_skip').addEventListener('click', skipController);
 }
 
 function createState(val){
@@ -179,12 +183,18 @@ function step(){
 
 
 
-    if(state==22){
+    if(state==acceptingState){
         displayState("Selesai");
         displayAnswer();
         stepController.disabled = true;
     }
 }
+
+function skipState() {
+    while (state != acceptingState) {
+      step();
+    }
+  }
 
 function go(nowState,oldVal,oldVal2,oldVal3,nextState,newVal,newVal2,newVal3,directiont1,directiont2,directiont3,addBlank){
     if(turingVal[j].val == oldVal && turingVal2[k].val == oldVal2 && turingVal3[l].val == oldVal3 && state == nowState && finished == 0){

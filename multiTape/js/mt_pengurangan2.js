@@ -17,6 +17,8 @@ var dispState = document.getElementById("show-state-now");
 var dispAnswer = document.getElementById("show-answer");
 var stepController = document.getElementById("controller_step");
 var initController = document.getElementById("init_step");
+var skipController = document.getElementById('controller_skip');
+var acceptingState = 5;
 
 function init() {
   trDelete();
@@ -129,6 +131,8 @@ function init() {
   k = 2;
   l = 2;
   state = 0;
+
+  document.getElementById('controller_skip').addEventListener('click', skipController);
 }
 
 function createState(val) {
@@ -224,10 +228,16 @@ function step() {
   go(5, "B", "B", 10, "B", "B", "S", "R", 0);
   go(5, "B", "B", 10, "B", "B", "S", "R", 0);
 
-  if (state == 5) {
+  if (state == acceptingState) {
     displayState("Selesai");
     displayAnswer();
     stepController.disabled = true;
+  }
+}
+
+function skipState() {
+  while (state != acceptingState) {
+    step();
   }
 }
 
