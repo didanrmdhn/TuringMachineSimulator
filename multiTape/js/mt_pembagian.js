@@ -18,6 +18,7 @@ var dispAnswer = document.getElementById('show-answer');
 var stepController = document.getElementById('controller_step');
 var initController = document.getElementById('init_step');
 var skipController = document.getElementById('controller_skip');
+var acceptingState = 841;
 
 
 function init(){
@@ -274,7 +275,7 @@ function step(){
     go(13, 'B', 'B', 'B', 14, 'B', 'B', 'B', 'S', 'S', 'S', 0);
 
 
-    if(state==14){
+    if(state==acceptingState){
         displayState("Selesai");
         displayAnswer();
         stepController.disabled = true;
@@ -282,7 +283,7 @@ function step(){
 }
 
 function skipState() {
-    while (state != 5) {
+    while (state != acceptingState) {
       step();
     }
   }
