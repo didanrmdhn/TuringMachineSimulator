@@ -1,15 +1,22 @@
-
-.turing-tape > *{
-    color: black;
-    background-color: white;
-    padding: .5em 1em;
-    font-size: 14pt;
-    margin: auto;
-    border: 1px solid black;
-    border-radius: 8px;
+body {
+  background-color: #3366ff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.state-active{
-    color: white;
-    background-color: black;
-    border-radius: 8px;
+
+.turing-tape > * {
+  color: black;
+  background-color: white;
+  padding: 0.5em 1em;
+  font-size: 14pt;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+.state-active {
+  color: white;
+  background-color: aqua;
+  border-radius: 8px;
 }
