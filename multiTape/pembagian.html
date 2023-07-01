@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,6 +30,105 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Output</span>
             <input type="text" class="form-control" id="show-answer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
           </div>
+=======
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <link href="./css/custom.css" rel="stylesheet" />
+  <title>Multi Tape - Pembagian</title>
+</head>
+<body>
+  <div class="card shadow-lg my-auto mx-auto" style="width: 90%; height: 750px">
+    <div class="card-body">
+      <a class="btn btn-danger" href="./indexMT.html">Back</a>
+      <h5 class="card-title" style="text-align: center; font-size: xx-large; margin-bottom: 10px;">Pembagian</h5>
+      <div
+      class="d-flex justify-content-around align-items-center mx-5 mt-5 px-5 pt-5 mb-2 pb-2"
+    >
+      <div class="input-group mb-3 p-3">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Input 1</span
+        >
+        <input
+          type="number"
+          name="val1"
+          id="val1"
+          class="form-control"
+          placeholder="value ..."
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default"
+        /><br>
+
+        <span class="input-group-text" id="inputGroup-sizing-default"
+            >Input 2</span
+            >
+        <input
+            type="number"
+            name="val2"
+            id="val2"
+            class="form-control"
+            placeholder="value ..."
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+        />
+
+
+      </div>
+      <input
+        class="btn btn-primary p-3 m-2"
+        type="button"
+        id="controller_init"
+        onclick="init()"
+        value="Submit"
+      />
+      <button
+        class="btn btn-primary p-3"
+        id="controller_step"
+        type="button"
+        onclick="step()"
+      >
+        Step
+      </button>
+      <button 
+        class="btn btn-primary p-3 m-2" 
+        id="controller_skip" 
+        type="button" 
+        onclick="skipState(); step();"
+        disabled
+        >
+        Skip
+      </button>
+      <button 
+        class="btn btn-primary p-3"
+        type="button" 
+        onclick="window.location.reload();"
+        >
+        Reset
+      </button>
+      <div class="input-group mb-3 p-3">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Output</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="show-answer"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+    </div>
+    <div class="d-flex justify-content-center flex-column">
+      <div class="d-flex w-100 justify-content-center mb-4">
+        <div
+          class="border rounded-3 bg-light p-2 text-md-center align-middle"
+          id="show-state-now"
+          style="width: 240px"
+        >
+          <p class="my-2">null</p>
+>>>>>>> master
         </div>
         <div class="d-flex justify-content-center flex-column">
           <div class="d-flex w-100 justify-content-center mb-4">
@@ -45,5 +145,13 @@
         <script src="./js/mt_pembagian.js"></script>
       </div>
     </div>
+<<<<<<< HEAD
   </body>
+=======
+    <script src="./js/mt_pembagian.js"></script>
+    </div>
+  </div>
+</body>
+>>>>>>> master
 </html>
+

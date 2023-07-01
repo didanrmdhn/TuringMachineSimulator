@@ -176,6 +176,8 @@ function init() {
   k = 2;
   l = 2;
   state = 0;
+
+  document.getElementById("controller_skip").addEventListener("click", skipController);
 }
 
 function createState(val) {

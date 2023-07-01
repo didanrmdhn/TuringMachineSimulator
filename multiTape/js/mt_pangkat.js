@@ -163,6 +163,56 @@ function createMostLeftNode4(val4) {
     this.val = newValue;
   };
 }
+function createState4(val4) {
+  this.val = val4;
+  var item4 = document.createElement("p");
+  var n4 = document.createTextNode(this.val);
+  item4.appendChild(n4);
+  trTape4.appendChild(item4);
+  this.replaceWith = function (newValue) {
+    this.val = newValue;
+  };
+}
+function createMostLeftNode(val) {
+  this.val = val;
+  var item = document.createElement("p");
+  var n = document.createTextNode(this.val);
+  item.appendChild(n);
+  trTape.insertBefore(item, trTape.firstChild);
+  this.replaceWith = function (newValue) {
+    this.val = newValue;
+  };
+}
+function createMostLeftNode2(val2) {
+  this.val = val2;
+  var item2 = document.createElement("p");
+  var n2 = document.createTextNode(this.val);
+  item2.appendChild(n2);
+  trTape2.insertBefore(item2, trTape2.firstChild);
+  this.replaceWith = function (newValue) {
+    this.val = newValue;
+  };
+}
+function createMostLeftNode3(val3) {
+  this.val = val3;
+  var item3 = document.createElement("p");
+  var n3 = document.createTextNode(this.val);
+  item3.appendChild(n3);
+  trTape3.insertBefore(item3, trTape3.firstChild);
+  this.replaceWith = function (newValue) {
+    this.val = newValue;
+  };
+}
+function createMostLeftNode4(val4) {
+  this.val = val4;
+  var item4 = document.createElement("p");
+  var n4 = document.createTextNode(this.val);
+  item4.appendChild(n4);
+  trTape4.insertBefore(item4, trTape4.firstChild);
+  this.replaceWith = function (newValue) {
+    this.val = newValue;
+  };
+}
 
 function displayAnswer() {
   for (i = 0; i < turingVal4.length; i++) {
