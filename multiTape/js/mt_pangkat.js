@@ -125,6 +125,49 @@ function createState4(val4){
     }
     
 }
+function createMostLeftNode(val) {
+    this.val = val;
+    var item = document.createElement("p");
+    var n = document.createTextNode(this.val);
+    item.appendChild(n);
+    trTape.insertBefore(item, trTape.firstChild);
+    this.replaceWith = function (newValue) {
+      this.val = newValue;
+    };
+}
+function createMostLeftNode2(val2) {
+    this.val = val2;
+    var item2 = document.createElement("p");
+    var n2 = document.createTextNode(this.val);
+    item2.appendChild(n2);
+    trTape2.insertBefore(item2, trTape2.firstChild);
+    this.replaceWith = function (newValue) {
+      this.val = newValue;
+    };
+}
+function createMostLeftNode3(val3) {
+    this.val = val3;
+    var item3 = document.createElement("p");
+    var n3 = document.createTextNode(this.val);
+    item3.appendChild(n3);
+    trTape3.insertBefore(item3, trTape3.firstChild);
+    this.replaceWith = function (newValue) {
+      this.val = newValue;
+    };
+  }
+function createMostLeftNode4(val4) {
+    this.val = val4;
+    var item4 = document.createElement("p");
+    var n4 = document.createTextNode(this.val);
+    item4.appendChild(n4);
+    trTape4.insertBefore(item4, trTape4.firstChild);
+    this.replaceWith = function (newValue) {
+      this.val = newValue;
+    };
+  }
+  
+  
+  
 
 function displayAnswer(){
     for(i=0; i<turingVal4.length; i++){
@@ -176,7 +219,7 @@ function step(){
     go(3, '0', '0', '0', 'B', 3, '0', '0', '0', '0', 'S', 'S', 'L', 'R',1);
     go(3, '0', '0', 'B', 'B', 4, '0', '0', 'B', 'B', 'S', 'R', 'R', 'S',0);
     go(3, '0', 'B', '0', 'B', 5, 'B', 'B', '0', 'B', 'R', 'S', 'S', 'S',0);
-    go(4, '0', '0', '0', 'B', 4, '0', '0', '0', 'B', 'S', 'S', 'R', 'R',1);
+    go(4, '0', '0', '0', 'B', 4, '0', '0', '0', '0', 'S', 'S', 'R', 'R',1);
     go(4, '0', '0', 'B', 'B', 3, '0', '0', 'B', 'B', 'S', 'R', 'L', 'S',0);
     go(4, '0', 'B', '0', 'B', 6, 'B', 'B', '0', 'B', 'R', 'S', 'S', 'S',0);
     go(5, '0', 'B', '0', 'B', 5, '0', 'B', 'B', 'B', 'S', 'S', 'L', 'S',1);
@@ -187,7 +230,7 @@ function step(){
     go(6, '0', 'B', 'B', 'B', 8, '0', 'B', 'B', 'B', 'S', 'S', 'S', 'L',0);
     go(7, '0', 'B', 'B', '0', 7, '0', 'B', '0', 'B', 'S', 'S', 'R', 'L',1);
     go(7, '0', 'B', 'B', 'B', 9, '0', 'B', 'B', 'B', 'S', 'L', 'L', 'S',0);
-    go(8, '0', 'B', 'B', '0', 8, '0', 'B', '0', 'B', 'S', 'S', 'L', 'L',0);
+    go(8, '0', 'B', 'B', '0', 8, '0', 'B', '0', 'B', 'S', 'S', 'L', 'L',1);
     go(8, '0', 'B', 'B', 'B', 10, '0', 'B', 'B', 'B', 'S', 'L', 'R', 'S',0);
     go(9, '0', '0', '0', 'B', 9, '0', '0', '0', '0', 'S', 'S', 'L', 'R', 1);
     go(9, '0', 'B', '0', 'B', 11, 'B', 'B', '0', 'B', 'R', 'S', 'S', 'S',0);
@@ -201,7 +244,7 @@ function step(){
     go(12, '0', 'B', '0', 'B', 12, '0', 'B', 'B', 'B', 'S', 'S', 'R', 'S',1);
     go(12, '0', 'B', 'B', 'B', 14, '0', 'B', 'B', 'B', 'S', 'S', 'S', 'L',0);
     go(12, 'B', 'B', '0', 'B', 16, 'B', 'B', '0', 'B', 'S', 'S', 'S', 'S',0);
-    go(13, 'B', 'B', 'B', '0', 13, '0', 'B', '0', 'B', 'S', 'S', 'R', 'L',1);
+    go(13, '0', 'B', 'B', '0', 13, '0', 'B', '0', 'B', 'S', 'S', 'R', 'L',1);
     go(13, '0', 'B', 'B', 'B', 3, '0', 'B', 'B', 'B', 'S', 'R', 'L', 'S',0);
     go(14, '0', 'B', 'B', '0', 14, '0', 'B', '0', 'B', 'S', 'S', 'L', 'L',1);
     go(14, '0', 'B', 'B', 'B', 4, '0', 'B', 'B', 'B', 'S', 'R', 'R', 'S',0);
@@ -253,10 +296,10 @@ function go(nowState,oldVal,oldVal2,oldVal3,oldVal4,nextState,newVal,newVal2,new
             turingVal4.push(new createState4("B"));
         }
         if(j == 0 || k == 0 || l == 0 || m == 0){
-            turingVal.unshift(new createState("B"));
-            turingVal2.unshift(new createState2("B"));
-            turingVal3.unshift(new createState3("B"));
-            turingVal4.unshift(new createState4("B"));
+            turingVal.unshift(new createMostLeftNode("B"));
+            turingVal2.unshift(new createMostLeftNode2("B"));
+            turingVal3.unshift(new createMostLeftNode3("B"));
+            turingVal4.unshift(new createMostLeftNode4("B"));
             j++;
             k++;
             l++;
