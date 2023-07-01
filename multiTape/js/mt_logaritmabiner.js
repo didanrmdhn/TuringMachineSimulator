@@ -6,9 +6,12 @@ var i;
 var j;
 var k;
 var l;
+var m;
+var n;
+var o;
+var acceptingState = 10;
 var result = 0;
 var nowState = 0;
-var acceptingState = 16;
 var activeState = document.getElementsByClassName("state-active");
 var trTape = document.getElementById("turing_tape");
 var trTape2 = document.getElementById("turing_tape2");
@@ -22,17 +25,15 @@ var initController = document.getElementById("init_step");
 function init() {
   trDelete();
 
-  if (nval1.value >= 0) {
+  if (nval1.value > 0) {
     for (i = 0; i < 2; i++) {
       turingVal.push(new createState("B"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
-    if (nval1.value > 0) {
-      turingVal.push(new createState("X"));
-      turingVal2.push(new createState2("B"));
-      turingVal3.push(new createState3("B"));
-    }
+    turingVal.push(new createState("X"));
+    turingVal2.push(new createState2("B"));
+    turingVal3.push(new createState3("B"));
     for (i = 0; i < nval1.value; i++) {
       turingVal.push(new createState("0"));
       turingVal2.push(new createState2("B"));
@@ -46,15 +47,18 @@ function init() {
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
-    trTape.childNodes[1].classList.add("state-active");
-    trTape2.childNodes[1].classList.add("state-active");
-    trTape3.childNodes[1].classList.add("state-active");
+    trTape.childNodes[2].classList.add("state-active");
+    trTape2.childNodes[2].classList.add("state-active");
+    trTape3.childNodes[2].classList.add("state-active");
   } else {
     alert("Nilai belum dimasukan/negatif");
   }
   j = 2;
   k = 2;
-  l = 1;
+  l = 2;
+  m = 2;
+  n = 2;
+  o = 2;
   state = 0;
 }
 
@@ -158,44 +162,24 @@ function step() {
   finished = 0;
   //nowState,oldvalue1,oldvalue2 | nextState,newvalue1,newvalue2,dir1,dir2,dir3,addblank
   go(0, "X", "B", "B", 1, "B", "B", "B", "R", "S", "S", 0);
-  go(0, "1", "B", "B", 15, "B", "B", "X", "S", "S", "R", 0);
-  go(1, "0", "B", "B", 1, "0", "B", "0", "R", "S", "R", 0);
+  go(0, "1", "B", "B", 1, "B", "B", "B", "R", "S", "S", 0);
+  go(1, "0", "B", "B", 1, "0", "B", "B", "R", "S", "S", 0);
   go(1, "1", "B", "B", 2, "B", "B", "B", "L", "S", "S", 0);
-  go(2, "0", "B", "B", 13, "B", "B", "B", "L", "S", "L", 0);
-  go(3, "0", "0", "B", 3, "0", "0", "0", "S", "L", "R", 1);
-  go(3, "0", "B", "B", 4, "0", "B", "B", "L", "R", "S", 0); ///fix
-  go(3, "B", "0", "B", 5, "B", "0", "B", "R", "S", "S", 0);
-  go(4, "0", "B", "B", 3, "0", "B", "B", "L", "L", "S", 0);
-  go(4, "0", "0", "B", 4, "0", "0", "0", "S", "R", "R", 1);
-  go(4, "B", "0", "B", 6, "B", "0", "B", "R", "S", "S", 0);
-  go(5, "0", "0", "B", 5, "0", "B", "B", "S", "L", "S", 0);
-  go(5, "0", "B", "B", 7, "B", "B", "B", "R", "S", "L", 0);
-  go(6, "0", "0", "B", 6, "0", "B", "B", "S", "R", "S", 0);
-  go(6, "0", "B", "B", 8, "B", "B", "B", "R", "S", "L", 0);
-  go(7, "0", "B", "0", 7, "0", "0", "B", "S", "R", "L", 0);
-  go(7, "0", "B", "B", 9, "0", "B", "B", "S", "L", "R", 0);
-  go(7, "B", "B", "0", 16, "B", "B", "0", "S", "S", "R", 0); //itbroke
-  go(8, "0", "B", "0", 8, "0", "0", "B", "S", "L", "L", 0); //then1
-  go(8, "0", "B", "B", 10, "0", "B", "B", "S", "R", "R", 0);
-  go(8, "B", "B", "0", 16, "B", "B", "0", "S", "S", "R", 0);
-  go(9, "0", "0", "B", 9, "0", "0", "0", "S", "L", "R", 1);
-  go(9, "0", "B", "B", 10, "0", "B", "B", "R", "R", "S", 0);
-  go(9, "B", "0", "B", 11, "B", "0", "B", "L", "S", "S", 1);
-  go(10, "0", "B", "B", 9, "0", "B", "B", "R", "L", "S", 0);
-  go(10, "0", "0", "B", 10, "0", "0", "0", "S", "R", "R", 1);
-  go(10, "B", "0", "B", 12, "B", "0", "B", "L", "S", "S", 0);
-  go(11, "0", "0", "B", 11, "0", "B", "B", "S", "L", "S", 0);
-  go(11, "0", "B", "B", 13, "B", "B", "B", "L", "S", "L", 0);
-  go(12, "0", "0", "B", 12, "0", "B", "B", "S", "R", "S", 0);
-  go(12, "0", "B", "B", 14, "B", "B", "B", "L", "S", "L", 0);
-  go(13, "0", "B", "B", 3, "0", "B", "B", "S", "L", "R", 0);
-  go(13, "0", "B", "0", 13, "0", "0", "B", "S", "R", "L", 0);
-  go(13, "0", "B", "0", 13, "0", "0", "B", "S", "R", "L", 0);
-  go(13, "B", "B", "0", 16, "B", "B", "0", "S", "S", "R", 0);
-  go(14, "0", "B", "B", 4, "0", "B", "B", "S", "R", "R", 0);
-  go(14, "0", "B", "0", 14, "0", "0", "B", "S", "L", "L", 0);
-  go(14, "B", "B", "0", 16, "B", "B", "0", "S", "S", "R", 0);
-  go(15, "B", "B", "B", 16, "B", "B", "B", "S", "S", "S", 0);
+  go(2, "0", "B", "B", 3, "B", "B", "B", "L", "S", "S", 0);
+  go(3, "0", "0", "B", 3, "0", "0", "0", "S", "L", "R", 0);
+  go(3, "0", "B", "B", 4, "B", "0", "B", "L", "R", "S", 0); ///fix
+  go(3, "B", "B", "B", 6, "B", "B", "B", "S", "S", "L", 0);
+  go(4, "0", "B", "B", 2, "0", "B", "B", "S", "S", "S", 0);
+  go(4, "B", "B", "B", 5, "B", "B", "0", "S", "L", "R", 0);
+  go(5, "B", "B", "B", 2, "B", "B", "B", "L", "S", "S", 0);
+  go(5, "B", "0", "B", 5, "0", "B", "B", "R", "L", "S", 0);
+  go(6, "B", "B", "0", 7, "B", "B", "0", "S", "L", "R", 0);
+  go(6, "B", "B", "B", 9, "B", "B", "Y", "S", "S", "R", 0);
+  go(7, "B", "0", "B", 8, "B", "B", "B", "S", "S", "L", 0);
+  go(7, "B", "B", "B", 10, "B", "B", "B", "S", "S", "S", 0);
+  go(8, "B", "B", "0", 8, "B", "B", "B", "S", "S", "L", 0); //then1
+  go(8, "B", "B", "B", 9, "B", "B", "Y", "S", "S", "R", 0);
+  go(9, "B", "B", "B", 10, "B", "B", "X", "S", "S", "R", 0);
 
   if (state == acceptingState) {
     displayState("Selesai");
@@ -216,6 +200,7 @@ function go(nowState, oldVal, oldVal2, oldVal3, nextState, newVal, newVal2, newV
     turingVal[j].replaceWith(newVal);
     turingVal2[k].replaceWith(newVal2);
     turingVal3[l].replaceWith(newVal3);
+
     trTape.childNodes[j].textContent = newVal;
     trTape2.childNodes[k].textContent = newVal2;
     trTape3.childNodes[l].textContent = newVal3;
@@ -225,9 +210,10 @@ function go(nowState, oldVal, oldVal2, oldVal3, nextState, newVal, newVal2, newV
     trTape.childNodes[j].scrollIntoView();
     trTape2.childNodes[k].scrollIntoView();
     trTape3.childNodes[l].scrollIntoView();
+
     state = nextState;
     displayState("(q" + nowState + " | q" + nextState + ") | " + oldVal + "," + oldVal2 + "," + oldVal3 + "/" + newVal + "," + newVal2 + "," + newVal3 + ", " + directiont1 + "," + directiont2 + "," + directiont3);
-    if (j == turingVal.length - 1 || k == turingVal.length - 1 || l == turingVal.length - 1) {
+    if (addBlank) {
       turingVal.push(new createState("B"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
@@ -237,10 +223,12 @@ function go(nowState, oldVal, oldVal2, oldVal3, nextState, newVal, newVal2, newV
       turingVal.unshift(new createMostLeftNode("B"));
       turingVal2.unshift(new createMostLeftNode2("B"));
       turingVal3.unshift(new createMostLeftNode3("B"));
-      j++;
-      k++;
-      l++;
+
+      j += 1;
+      k += 1;
+      l += 1;
     }
+
     decide(directiont1, directiont2, directiont3);
     finished = 1;
   }
@@ -249,23 +237,32 @@ function decide(dt1, dt2, dt3) {
   //mungkin ganti switch case
   if (dt1 == "R") {
     j++;
+    m++;
   } else if (dt1 == "L") {
     j--;
+    m--;
   } else {
     j;
+    m;
   }
   if (dt2 == "R") {
     k++;
+    n++;
   } else if (dt2 == "L") {
     k--;
+    n--;
   } else {
     k;
+    n;
   }
   if (dt3 == "R") {
     l++;
+    o++;
   } else if (dt3 == "L") {
     l--;
+    o--;
   } else {
     l;
+    o;
   }
 }

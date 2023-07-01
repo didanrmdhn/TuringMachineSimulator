@@ -17,22 +17,23 @@ var dispState = document.getElementById("show-state-now");
 var dispAnswer = document.getElementById("show-answer");
 var stepController = document.getElementById("controller_step");
 var initController = document.getElementById("init_step");
-var skipController = document.getElementById('controller_skip');
 var acceptingState = 5;
 
 function init() {
   trDelete();
 
   //positif x positif
-  if (nval1.value > 0 && nval2.value > 0) {
+  if (nval1.value >= 0 && nval2.value >= 0) {
     for (i = 0; i < 2; i++) {
       turingVal.push(new createState("B"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
-    turingVal.push(new createState("X"));
-    turingVal2.push(new createState2("B"));
-    turingVal3.push(new createState3("B"));
+    if (nval1.value > 0) {
+      turingVal.push(new createState("X"));
+      turingVal2.push(new createState2("B"));
+      turingVal3.push(new createState3("B"));
+    }
     for (i = 0; i < nval1.value; i++) {
       turingVal.push(new createState("0"));
       turingVal2.push(new createState2("B"));
@@ -41,9 +42,11 @@ function init() {
     turingVal.push(new createState("1"));
     turingVal2.push(new createState2("B"));
     turingVal3.push(new createState3("B"));
-    turingVal.push(new createState("X"));
-    turingVal2.push(new createState2("B"));
-    turingVal3.push(new createState3("B"));
+    if (nval2.value > 0) {
+      turingVal.push(new createState("X"));
+      turingVal2.push(new createState2("B"));
+      turingVal3.push(new createState3("B"));
+    }
     for (i = 0; i < nval2.value; i++) {
       turingVal.push(new createState("0"));
       turingVal2.push(new createState2("B"));
@@ -96,22 +99,30 @@ function init() {
   }
 
   //negatif x positif
-  else if (nval1.value < 0 && nval2.value > 0) {
+  else if (nval1.value < 0 && nval2.value >= 0) {
     for (i = 0; i < 2; i++) {
       turingVal.push(new createState("B"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
+    turingVal.push(new createState("Y"));
+    turingVal2.push(new createState2("B"));
+    turingVal3.push(new createState3("B"));
     for (i = 0; i > nval1.value; i--) {
       turingVal.push(new createState("0"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
-    turingVal.push(new createState("c"));
+    turingVal.push(new createState("1"));
     turingVal2.push(new createState2("B"));
     turingVal3.push(new createState3("B"));
+    if (nval2.value > 0) {
+      turingVal.push(new createState("X"));
+      turingVal2.push(new createState2("B"));
+      turingVal3.push(new createState3("B"));
+    }
     for (i = 0; i < nval2.value; i++) {
-      turingVal.push(new createState("1"));
+      turingVal.push(new createState("0"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
@@ -132,12 +143,18 @@ function init() {
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
+    turingVal.push(new createState("Y"));
+    turingVal2.push(new createState2("B"));
+    turingVal3.push(new createState3("B"));
     for (i = 0; i > nval1.value; i--) {
       turingVal.push(new createState("0"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
     }
-    turingVal.push(new createState("c"));
+    turingVal.push(new createState("1"));
+    turingVal2.push(new createState2("B"));
+    turingVal3.push(new createState3("B"));
+    turingVal.push(new createState("Y"));
     turingVal2.push(new createState2("B"));
     turingVal3.push(new createState3("B"));
     for (i = 0; i > nval2.value; i--) {
@@ -160,8 +177,7 @@ function init() {
   l = 2;
   state = 0;
 
-  document.getElementById('controller_skip').addEventListener('click', skipController);
-
+  document.getElementById("controller_skip").addEventListener("click", skipController);
 }
 
 function createState(val) {
@@ -243,24 +259,24 @@ function step() {
   finished = 0;
   //nowState,oldvalue1,oldvalue2 | nextState,newvalue1,newvalue2,dir1,dir2,dir3,addblank
 
-  go(0, "X", "B", "B", 1, "B", "B", "X", "R", "S", "S", 0);
-  go(0, "Y", "B", "B", 1, "B", "B", "Y", "R", "S", "S", 0);
-  go(1, "0", "B", "X", 1, "B", "0", "X", "R", "R", "S", 0);
-  go(1, "1", "B", "X", 2, "B", "B", "X", "R", "S", "S", 0);
-  go(1, "0", "B", "Y", 1, "B", "0", "Y", "R", "R", "S", 0);
-  go(1, "1", "B", "Y", 2, "B", "B", "Y", "R", "S", "S", 0);
-  go(2, "X", "B", "X", 3, "B", "B", "X", "R", "L", "R", 0);
-  go(2, "Y", "B", "X", 3, "B", "B", "Y", "R", "L", "R", 0);
-  go(2, "Y", "B", "Y", 3, "B", "B", "X", "R", "L", "R", 0);
-  go(2, "X", "B", "Y", 3, "B", "B", "Y", "R", "L", "R", 0);
-  go(2, "B", "B", "X", 5, "B", "B", "B", "S", "S", "S", 0);
-  go(2, "B", "B", "Y", 5, "B", "B", "B", "S", "S", "S", 0);
-  go(3, "0", "0", "B", 3, "0", "0", "0", "S", "L", "R", 0);
-  go(3, "0", "B", "B", 4, "B", "B", "B", "R", "R", "S", 0);
-  go(4, "0", "B", "B", 3, "B", "B", "B", "R", "L", "S", 0);
-  go(4, "0", "0", "B", 4, "0", "0", "0", "S", "R", "R", 1);
-  go(3, "B", "0", "B", 5, "B", "B", "B", "S", "S", "S", 0);
-  go(4, "B", "0", "B", 5, "B", "B", "B", "S", "S", "S", 0);
+  go(0, "X", "B", "B", 1, "B", "B", "X", "R", "S", "S");
+  go(0, "Y", "B", "B", 1, "B", "B", "Y", "R", "S", "S");
+  go(1, "0", "B", "X", 1, "B", "0", "X", "R", "R", "S");
+  go(1, "1", "B", "X", 2, "B", "B", "X", "R", "S", "S");
+  go(1, "0", "B", "Y", 1, "B", "0", "Y", "R", "R", "S");
+  go(1, "1", "B", "Y", 2, "B", "B", "Y", "R", "S", "S");
+  go(2, "X", "B", "X", 3, "B", "B", "X", "R", "L", "R");
+  go(2, "Y", "B", "X", 3, "B", "B", "Y", "R", "L", "R");
+  go(2, "Y", "B", "Y", 3, "B", "B", "X", "R", "L", "R");
+  go(2, "X", "B", "Y", 3, "B", "B", "Y", "R", "L", "R");
+  go(2, "B", "B", "X", 5, "B", "B", "B", "S", "S", "S");
+  go(2, "B", "B", "Y", 5, "B", "B", "B", "S", "S", "S");
+  go(3, "0", "0", "B", 3, "0", "0", "0", "S", "L", "R");
+  go(3, "0", "B", "B", 4, "B", "B", "B", "R", "R", "S");
+  go(4, "0", "B", "B", 3, "B", "B", "B", "R", "L", "S");
+  go(4, "0", "0", "B", 4, "0", "0", "0", "S", "R", "R");
+  go(3, "B", "0", "B", 5, "B", "B", "B", "S", "S", "S");
+  go(4, "B", "0", "B", 5, "B", "B", "B", "S", "S", "S");
 
   if (state == acceptingState) {
     displayState("Selesai");
@@ -276,7 +292,7 @@ function skipState() {
   }
 }
 
-function go(nowState, oldVal, oldVal2, oldVal3, nextState, newVal, newVal2, newVal3, directiont1, directiont2, directiont3, addBlank) {
+function go(nowState, oldVal, oldVal2, oldVal3, nextState, newVal, newVal2, newVal3, directiont1, directiont2, directiont3) {
   if (turingVal[j].val == oldVal && turingVal2[k].val == oldVal2 && turingVal3[l].val == oldVal3 && state == nowState && finished == 0) {
     turingVal[j].replaceWith(newVal);
     turingVal2[k].replaceWith(newVal2);
@@ -292,10 +308,19 @@ function go(nowState, oldVal, oldVal2, oldVal3, nextState, newVal, newVal2, newV
     trTape3.childNodes[l].scrollIntoView();
     state = nextState;
     displayState("(q" + nowState + " | q" + nextState + ") | " + oldVal + "," + oldVal2 + "," + oldVal3 + "/" + newVal + "," + newVal2 + "," + newVal3 + ", " + directiont1 + "," + directiont2 + "," + directiont3);
-    if (addBlank) {
+    if (j == turingVal.length - 1 || k == turingVal.length - 1 || l == turingVal.length - 1) {
       turingVal.push(new createState("B"));
       turingVal2.push(new createState2("B"));
       turingVal3.push(new createState3("B"));
+    }
+
+    if (j == 0 || k == 0 || l == 0) {
+      turingVal.unshift(new createMostLeftNode("B"));
+      turingVal2.unshift(new createMostLeftNode2("B"));
+      turingVal3.unshift(new createMostLeftNode3("B"));
+      j++;
+      k++;
+      l++;
     }
     decide(directiont1, directiont2, directiont3);
     finished = 1;
