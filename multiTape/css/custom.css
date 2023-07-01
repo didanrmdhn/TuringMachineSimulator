@@ -1,3 +1,10 @@
+body {
+    background-color: #3366ff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .turing-tape > *{
     color: black;
